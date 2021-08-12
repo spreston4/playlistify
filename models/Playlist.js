@@ -5,7 +5,7 @@ class Playlist extends Model {}
 
 Project.init(
   {
-    id: {
+    playlist_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -27,7 +27,7 @@ Project.init(
       allowNull: false,
       references: {
         model: "songs",
-        key: 'song_id'
+        key: 'track_id'
       }
     },
 
