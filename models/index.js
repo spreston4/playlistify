@@ -19,4 +19,4 @@ Songs.belongsTo(Playlist, {
   foriegnKey: 'playlist_id'
 })
 
-module.exports = { User, Playlist };
+module.exports = { User, Playlist, Songs };
