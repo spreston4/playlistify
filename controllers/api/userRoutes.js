@@ -35,8 +35,13 @@ router.get('/login', async (req, res) => {
         req.session.save(() => {
           req.session.spotifyApi = spotifyApi;
           req.session.logged_in = true;
+<<<<<<< HEAD
           // change res.json to res.redired /playlist or /homepage
            res.redirect('http://localhost:3001/');
+=======
+          
+          res.redirect('http://localhost:3001/');
+>>>>>>> 66edb4c662649d4bf0e147289c2b16b2dfbd6a34
         });
       },
       function(err) {
