@@ -35,8 +35,8 @@ router.get('/login', async (req, res) => {
         req.session.save(() => {
           req.session.spotifyApi = spotifyApi;
           req.session.logged_in = true;
-          
-          res.json({ user: userData, message: 'You are now logged in!' });
+          // change res.json to res.redired /playlist or /homepage
+           res.redirect('http://localhost:3001/');
         });
       },
       function(err) {
