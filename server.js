@@ -40,17 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes);
 
 
-// This is to test Spotify Web API // 
-/*
-spotifyApi.getArtistAlbums('43ZHCT0cAZBISjO8DG9PnE').then(
-  function(data) {
-    console.log('Artist albums', data.body);
-  },
-  function(err) {
-    console.error(err);
-  }
-);
-*/
+
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));
