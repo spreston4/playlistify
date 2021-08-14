@@ -20,6 +20,7 @@ router.post('/', async (req, res) => {
 router.get('/login', async (req, res) => {
   const code = req.query.code;
   const spotifyApi = spotifyApiFactory();
+  console.log(code);
   try {
     spotifyApi.authorizationCodeGrant(code).then(
       function(data) {
@@ -28,8 +29,8 @@ router.get('/login', async (req, res) => {
         console.log('The refresh token is ' + data.body['refresh_token']);
     
         // Set the access token on the API object to use it in later calls
-        spotifyApi.setAccessToken(data.body['access_token']);
-        spotifyApi.setRefreshToken(data.body['refresh_token']);
+        // spotifyApi.setAccessToken(data.body['access_token']);
+        // spotifyApi.setRefreshToken(data.body['refresh_token']);
         console.log(data.body);
         req.session.save(() => {
           req.session.spotifyApi = spotifyApi;
@@ -42,6 +43,7 @@ router.get('/login', async (req, res) => {
         });
       },
       function(err) {
+        res.status(400).json(err);
         console.log('Something went wrong!', err);
       }
     );
