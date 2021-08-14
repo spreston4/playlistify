@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 const spotifyApi = require('../../config/spotifyWrapper');
+const spotifyApiFactory = require('../../config/spotifyWrapper');
 
 router.post('/', async (req, res) => {
   try {
@@ -19,6 +20,7 @@ router.post('/', async (req, res) => {
 
 router.get('/login', async (req, res) => {
   const code = req.query.code;
+  const spotifyApi = spotifyApiFactory();
   try {
     spotifyApi.authorizationCodeGrant(code).then(
       function(data) {
@@ -31,7 +33,7 @@ router.get('/login', async (req, res) => {
         spotifyApi.setRefreshToken(data.body['refresh_token']);
         console.log(data.body);
         req.session.save(() => {
-          req.session.access_token = data.body['access_token'];
+          req.session.spotifyApi = spotifyApi;
           req.session.logged_in = true;
           
           res.json({ user: userData, message: 'You are now logged in!' });

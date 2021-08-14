@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Project, User } = require('../models');
 const withAuth = require('../utils/auth');
-const spotifyApi = require('../config/spotifyWrapper');
+const spotifyApiFactory = require('../config/spotifyWrapper');
 
 router.get('/', async (req, res) => {
   try {
@@ -89,7 +89,7 @@ router.get('/login', (req, res) => {
 });
 */
 // Create the authorization URL
-const authorizeURL = spotifyApi.createAuthorizeURL(scopes);
+const authorizeURL = spotifyApiFactory().createAuthorizeURL(scopes);
 
 // https://accounts.spotify.com:443/authorize?client_id=5fe01282e44241328a84e7c5cc169165&response_type=code&redirect_uri=https://example.com/callback&scope=user-read-private%20user-read-email&state=some-state-of-my-choice
 console.log(authorizeURL);
