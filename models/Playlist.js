@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 
 class Playlist extends Model {}
 
-Project.init(
+Playlist.init(
   {
     playlist_id: {
       type: DataTypes.INTEGER,
@@ -22,15 +22,6 @@ Project.init(
       type: DataTypes.DECIMAL,
       allowNull: false,
     },
-    songs: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      references: {
-        model: "songs",
-        key: 'track_id'
-      }
-    },
-
     user_id: {
       type: DataTypes.INTEGER,
       references: {

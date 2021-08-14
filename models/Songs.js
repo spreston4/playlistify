@@ -17,7 +17,7 @@ Songs.init(
       allowNull: false,
       references: {
          model: "playlist",
-         key: playlist_id,
+         key: 'playlist_id',
       },
     },
     // URI allows us to put tracks into a playlist. Basically Playlists have their own serial code that accepts URI only

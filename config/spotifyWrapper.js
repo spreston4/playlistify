@@ -5,3 +5,5 @@ const spotifyApi = new SpotifyWebApi({
     clientSecret: '55022fe59a554d10a4640dbb472ad89e',
     redirectUri: ' http://localhost/api/users/login'
   });
+
+module.exports = spotifyApi;
