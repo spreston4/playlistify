@@ -1,7 +1,6 @@
 const router = require('express').Router();
-const { User } = require('../../models');
-const spotifyApi = require('../../config/spotifyWrapper');
-const spotifyApiFactory = require('../../config/spotifyWrapper');
+import { User } from '../../models';
+import spotifyApiFactory from '../../config/spotifyWrapper';
 
 router.post('/', async (req, res) => {
   try {
@@ -35,13 +34,11 @@ router.get('/login', async (req, res) => {
         req.session.save(() => {
           req.session.spotifyApi = spotifyApi;
           req.session.logged_in = true;
-<<<<<<< HEAD
-          // change res.json to res.redired /playlist or /homepage
-           res.redirect('http://localhost:3001/');
-=======
+
+
           
           res.redirect('http://localhost:3001/');
->>>>>>> 66edb4c662649d4bf0e147289c2b16b2dfbd6a34
+
         });
       },
       function(err) {
@@ -65,4 +62,4 @@ router.post('/logout', (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
