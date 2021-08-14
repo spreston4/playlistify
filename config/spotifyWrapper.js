@@ -5,10 +5,10 @@ const spotifyApiFactory = (accessToken, refreshToken) => {
     clientId:  process.env.SPOTIFY_CLIENT_ID,
     clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
     redirectUri: process.env.SPOTIFY_REDIRECT_URI,
-    accessToken: setAccessToken(data.body['access_token']),
-    refreshToken: setRefreshToken(data.body['refresh_token'])
+ 
   });
-
+   if(accessToken) api.setAccessToken(accessToken);
+   if(refreshToken) api.setRefreshToken(refreshToken);
   return api;
 }
   

@@ -1,6 +1,6 @@
 const router = require('express').Router();
-import { User } from '../../models';
-import spotifyApiFactory from '../../config/spotifyWrapper';
+const { User } = require('../../models');
+const  spotifyApiFactory =  require('../../config/spotifyWrapper');
 
 router.post('/', async (req, res) => {
   try {
@@ -33,7 +33,8 @@ router.get('/login', async (req, res) => {
         // spotifyApi.setRefreshToken(data.body['refresh_token']);
         console.log(data.body);
         req.session.save(() => {
-          req.session.spotifyApi = spotifyApi;
+          req.session.access_token = data.body.access_token;
+          req.session.refresh_token = data.body.refresh_token;
           req.session.logged_in = true;
 
 
@@ -64,4 +65,4 @@ router.post('/logout', (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;
