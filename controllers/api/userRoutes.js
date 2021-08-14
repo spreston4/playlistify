@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const spotifyApi = require('../../config/spotifyWrapper');
 
 router.post('/', async (req, res) => {
   try {
@@ -16,32 +17,31 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.post('/login', async (req, res) => {
+router.get('/login', async (req, res) => {
+  const code = req.query.code;
   try {
-    const userData = await User.findOne({ where: { email: req.body.email } });
+    spotifyApi.authorizationCodeGrant(code).then(
+      function(data) {
+        console.log('The token expires in ' + data.body['expires_in']);
+        console.log('The access token is ' + data.body['access_token']);
+        console.log('The refresh token is ' + data.body['refresh_token']);
+    
+        // Set the access token on the API object to use it in later calls
+        spotifyApi.setAccessToken(data.body['access_token']);
+        spotifyApi.setRefreshToken(data.body['refresh_token']);
+        console.log(data.body);
+        req.session.save(() => {
+          req.session.access_token = data.body['access_token'];
+          req.session.logged_in = true;
+          
+          res.json({ user: userData, message: 'You are now logged in!' });
+        });
+      },
+      function(err) {
+        console.log('Something went wrong!', err);
+      }
+    );
 
-    if (!userData) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
-
-    const validPassword = await userData.checkPassword(req.body.password);
-
-    if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
-
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
-      
-      res.json({ user: userData, message: 'You are now logged in!' });
-    });
 
   } catch (err) {
     res.status(400).json(err);

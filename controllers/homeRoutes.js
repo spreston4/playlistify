@@ -78,7 +78,7 @@ router.get('/login', (req, res) => {
   }
 
   var scopes = ['user-read-private', 'user-read-email'],
-  redirectUri = 'http://localhost/api/users/login',
+  redirectUri = 'http://localhost:3001/api/users/login',
   clientId = 'f61cd24f13634874a2c1dfc3411dd2a5';
   //state = 'some-state-of-my-choice';
 
