@@ -8,6 +8,8 @@ router.get('/', async (req, res) => {
     res.render('homepage');    
 });
 
+/*
+
 router.get('/project/:id', async (req, res) => {
   try {
     const projectData = await Project.findByPk(req.params.id, {
@@ -29,7 +31,7 @@ router.get('/project/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+*/
 // Use withAuth middleware to prevent access to route
 router.get('/profile', withAuth, async (req, res) => {
   try {
