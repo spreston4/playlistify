@@ -6,7 +6,8 @@ console.log(req.session.spotifyApi);
 const spotifyApi = spotifyApiFactory(req.session.access_token, req.session.refresh_token);  
 spotifyApi.searchTracks('Love')
   .then(function(data) {
-    console.log('Search by "Love"', data.body);
+    
+    console.log('Search by "Love"', data.body.tracks.items);
   }, function(err) {
     console.error(err);
   });
