@@ -1,7 +1,7 @@
 {
   "name": "crowd-funding",
   "version": "1.0.0",
-  "description": "",
+  "description": "Use spoitfy API to search song data to build individualized playlists. Users can have multiple playlists which each contain multiple songs.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,11 +19,21 @@
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
     "mysql2": "^2.2.5",
-    "sequelize": "^6.3.5"
+    "oauth": "^0.9.15",
+    "sequelize": "^6.3.5",
+    "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {
     "eslint": "^7.12.1",
     "eslint-config-prettier": "^6.15.0",
     "prettier": "^2.1.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spreston4/playlistify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/spreston4/playlistify/issues"
+  },
+  "homepage": "https://github.com/spreston4/playlistify#readme"
 }
