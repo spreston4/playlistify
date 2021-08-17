@@ -36,9 +36,6 @@ router.get('/login', async (req, res) => {
           req.session.access_token = data.body.access_token;
           req.session.refresh_token = data.body.refresh_token;
           req.session.logged_in = true;
-
-
-          
           res.redirect('http://localhost:3001/');
 
         });
