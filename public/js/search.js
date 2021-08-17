@@ -1,12 +1,12 @@
 const searchvalue = document.getElementById('').textContent;
-const translatedValue = searchvalue;
+const translatedValue = JSON.stringify({search:"TestValue from search.js fetch request"});
 
 
 
 
 const searching = async () => {
     const response = await fetch('/api/spotify/search/tracks', {
-      method: 'POST',
+      method: 'GET',
       body: translatedValue,
       headers: { 'Content-Type': 'application/json' },
     });
