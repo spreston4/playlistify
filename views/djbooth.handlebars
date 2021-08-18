@@ -1,0 +1,18 @@
+<!-- DJ Booth Section -->
+<div class="columns is-centered mt-5">
+    <article class="panel is-success column is-three-fifths">
+        <p class="panel-heading">
+            My Playlists
+        </p>
+        <!-- Loop through all playlist for user -->
+        <!-- {{#each playlists as |playlists|}} -->
+        <a class="panel-block is-active" href="api/playlists/edit/{{playlist.id}}">
+            Playlist 1 : Playlist Description
+            <!-- {{playlist.name}} : {{playlist.description}} -->
+        </a>
+        <!-- {{/each}} -->
+        <div class="control mt-3 mb-0 is-centered columns is-centered">
+            <button class="button is-dark">Create New Playlist</button>
+        </div>
+    </article>
+</div>
