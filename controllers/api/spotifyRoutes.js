@@ -9,7 +9,7 @@ const spotifyApi = spotifyApiFactory(req.session.access_token, req.session.refre
 spotifyApi.searchTracks(req.query.q)
   .then(function(data) {
    
-      console.log('Search by "Love"', data.body.tracks.items);
+      console.log('Search by "stay"', data.body.tracks.items);
     // put an {{each}} into the search template and a res.render so that we can see each individual item
     
     //console.log('Search by "Love"', data.body.tracks.items);

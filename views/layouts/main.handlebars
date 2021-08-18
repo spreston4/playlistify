@@ -20,7 +20,7 @@
     <nav>
         <ul class = "navigation-bar"> 
           <li><a href="/"> Home </a></li>
-          <li><a href="/api/spotify/search/tracks?q=love" id="Searching"> Search Tracks</a></li>
+          <li><button id="Searching" type="button" value="Searching" onclick="searching(event)"> Search Tracks</button></li>
            {{#if logged_in}}
               
            <li><a href="/profile" id="logout">logout</a></li>

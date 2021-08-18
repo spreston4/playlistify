@@ -1,4 +1,5 @@
-const searchvalue = document.getElementById('').textContent;
+// const searchvalue = document.getElementById('love').textContent;
+const searchValue = 'rock';
 const translatedValue = JSON.stringify({search:"TestValue from search.js fetch request"});
 
 
@@ -6,7 +7,7 @@ const translatedValue = JSON.stringify({search:"TestValue from search.js fetch r
 
 const searching = async (event) => {
   event.preventDefault();
-    const response = await fetch('/api/spotify/search/tracks?q=love', {
+    const response = await fetch(`/api/spotify/search/tracks?q=${searchValue}`, {
       method: 'GET',
       // body: translatedValue,
       headers: { 'Content-Type': 'application/json' },
