@@ -4,10 +4,11 @@ const translatedValue = JSON.stringify({search:"TestValue from search.js fetch r
 
 
 
-const searching = async () => {
-    const response = await fetch('/api/spotify/search/tracks', {
+const searching = async (event) => {
+  event.preventDefault();
+    const response = await fetch('/api/spotify/search/tracks?q=love', {
       method: 'GET',
-      body: translatedValue,
+      // body: translatedValue,
       headers: { 'Content-Type': 'application/json' },
     });
   
@@ -18,4 +19,4 @@ const searching = async () => {
     }
   };
   
-  document.querySelector('#Searching').addEventListener('click', searching);
+  document.querySelector('#Searching').addEventListener('click', searching());

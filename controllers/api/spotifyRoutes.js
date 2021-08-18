@@ -4,10 +4,9 @@ const SongName = "Love"
 // const SongName = `${Love}`
 
 router.get('/search/tracks', async (req,res) => { 
-console.log(req.body);
-
+console.log(req.query);
 const spotifyApi = spotifyApiFactory(req.session.access_token, req.session.refresh_token);  
-spotifyApi.searchTracks(req.body.search)
+spotifyApi.searchTracks(req.query.q)
   .then(function(data) {
    
       console.log('Search by "Love"', data.body.tracks.items);
@@ -15,7 +14,7 @@ spotifyApi.searchTracks(req.body.search)
     
     //console.log('Search by "Love"', data.body.tracks.items);
   }, function(err) {
-    console.error(err);
+    // console.error(err);
   });
 })
 module.exports = router;
