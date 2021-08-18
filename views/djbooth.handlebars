@@ -6,13 +6,13 @@
         </p>
         <!-- Loop through all playlist for user -->
         <!-- {{#each playlists as |playlists|}} -->
-        <a class="panel-block is-active" href="api/playlists/edit/{{playlist.id}}">
+        <a class="panel-block is-active" data-playlist_id="{{playlist.id}}" href="/viewplaylist/{{playlist.id}}">
             Playlist 1 : Playlist Description
             <!-- {{playlist.name}} : {{playlist.description}} -->
         </a>
         <!-- {{/each}} -->
         <div class="control mt-3 mb-0 is-centered columns is-centered">
-            <button class="button is-dark">Create New Playlist</button>
+            <a class="button is-dark" href="/newplaylist">Create New Playlist</a>
         </div>
     </article>
 </div>
