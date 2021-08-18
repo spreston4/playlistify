@@ -1,6 +1,6 @@
 <!-- View Playlist -->
 <div class="columns is-centered mt-5">
-    <article class="panel is-success column is-three-fifths" data-playlist_id="{{playlist.id}}">
+    <article class="panel is-success column is-three-fifths">
         <p class="panel-heading">
             Playlist Name
             <!-- {{playlist.name}} -->
@@ -42,7 +42,8 @@
         </div>
 
         <div class="control mt-3 mb-0 is-centered columns is-centered">
-            <a class="button is-dark" href="/addsong">Add New Song</button>
+            <a class="button is-dark" data-playlist_id="{{playlist.id}}" href="/searchsong">Add New Song</a>
+            <!-- <a class="button is-dark" data-playlist_id="{{playlist.id}}" href="/searchsong/{{playlist.id}}">Add New Song</a> -->
         </div>
     </article>
 </div>
