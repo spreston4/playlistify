@@ -1,11 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Project extends Model {}
+class Playlist extends Model {}
 
-Project.init(
+Playlist.init(
   {
-    id: {
+    playlist_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -15,16 +15,11 @@ Project.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
+    genre: {
       type: DataTypes.STRING,
     },
-    date_created: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    needed_funding: {
-      type: DataTypes.FLOAT,
+    danceability: {
+      type: DataTypes.DECIMAL,
       allowNull: false,
     },
     user_id: {
@@ -40,8 +35,8 @@ Project.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'project',
+    modelName: 'playlist',
   }
 );
 
-module.exports = Project;
+module.exports = Playlist;
