@@ -1,10 +1,30 @@
 const router = require('express').Router();
-const { Project, User } = require('../models');
+const { User } = require('../models');
 const withAuth = require('../utils/auth');
 const spotifyApiFactory = require('../config/spotifyWrapper');
 
 
 router.get('/', async (req, res) => {
+<<<<<<< HEAD
+  try {
+    // const playlistData = await Playlist.findAll({
+    //   include: [{ model: User, attributes: ['username'] }]
+    // });
+
+    // const playlists = playlistData.map((playlist) => playlist.get({ plain: true }));
+
+    // res.render('homepage', {
+    //   playlists,
+    //   logged_in: req.session.logged_in,
+    // });
+
+    res.render('homepage');
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+=======
   // const code = req.query.code;
   // const spotifyApi = spotifyApiFactory();
   // try {
@@ -42,30 +62,82 @@ router.get('/', async (req, res) => {
       
 
 /*
+>>>>>>> main
 
-router.get('/project/:id', async (req, res) => {
+router.get('/djbooth', async (req, res) => {
+
   try {
-    const projectData = await Project.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
-    });
 
-    const project = projectData.get({ plain: true });
+    res.render('djbooth')
 
-    res.render('project', {
-      ...project,
-      logged_in: req.session.logged_in
-    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+<<<<<<< HEAD
+
+// Need to update to account for playlist id
+router.get('/viewplaylist', async (req, res) => {
+
+  try {
+
+    res.render('viewplaylist')
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+=======
 */
 // Use withAuth middleware to prevent access to route
+router.get('/profile', withAuth, async (req, res) => {
+  res.render('profile');
+>>>>>>> main
+});
+
+router.get('/searchsong', async (req, res) => {
+
+  try {
+
+    res.render('searchsong')
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/songresults', async (req, res) => {
+
+  try {
+
+    res.render('songresults')
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/newplaylist', async (req, res) => {
+
+  try {
+
+    res.render('newplaylist')
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/viewplaylistpublic', async (req, res) => {
+
+  try {
+
+    res.render('viewplaylistpublic')
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get('/profile', withAuth, async (req, res) => {
   res.render('profile');
 });

@@ -3,13 +3,82 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+=======
   <title>Playlistify</title>
   <link rel="stylesheet" href="/css/jass.css">
+>>>>>>> main
   <link rel="stylesheet" href="/css/style.css">
+  <title>Document</title>
 </head>
 
 <body>
+<<<<<<< HEAD
+  <header>
+    <!-- Title -->
+    <section class="hero is-success">
+      <div class="hero-body">
+        <p class="title">
+          Playlistify
+        </p>
+        <p class="subtitle">
+          For all your playlist needs
+        </p>
+      </div>
+    </section>
+    <!-- End Title -->
+    <!-- Nav Bar -->
+    <nav class="navbar is-success" role="navigation" aria-label="main navigation">
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item" href="/">
+            Home
+          </a>
+          <a class="navbar-item" href="/djbooth">
+            DJ Booth
+          </a>
+        </div>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              {{#if logged_in}}
+              <a class="button is-dark" href="/logot">
+                Log out
+              </a>
+              {{else}}
+              <a class="button is-dark" href="/login">
+                Log in
+              </a>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- End Nav Bar -->
+  </header>
+  <main>
+
+    {{{ body }}}
+
+  </main>
+  <!-- Footer -->
+  <footer class="footer mt-6">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Playlistify</strong> brought to you by Jason Ma, Sam Nielsen, Sam Preston, Rob Simanton.
+      </p>
+    </div>
+  </footer>
+  <!-- End Footer -->
+  <!-- Scripts -->
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" data-auto-replace-svg="nest"></script>
+  <script src="/js/login.js"></script>
+  <!-- End Scripts -->
+=======
   <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
       <h1>
@@ -48,6 +117,7 @@
   <script src="/js/logout.js"></script>
   {{/if}}
   <script src="/js/search.js"></script>
+>>>>>>> main
 </body>
 
 </html>
