@@ -1,6 +1,6 @@
 const sequelize = require('../config/connection');
-const playlistData = require('./playlistData.js');
-const songData = require('./songData.js');
+const seedPlaylist = require('./playlistData.js');
+const seedSong = require('./songData.js');
 
 const seedAll = async () => {
 
