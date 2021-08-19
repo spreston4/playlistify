@@ -5,7 +5,7 @@ class Songs extends Model {}
 
 Songs.init(
   {
-    track_id: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -35,11 +35,11 @@ Songs.init(
     },
     danceability: {
       type: DataTypes.DECIMAL,
-      allowNull: false,
+      allowNull: true,
     },
     bpm: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {
