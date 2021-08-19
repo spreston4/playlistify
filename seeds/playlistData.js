@@ -16,6 +16,11 @@ const playlistData = [
         description: 'Make me cry.',
         user: 'sam',
     },
+    {
+        name: 'Pam playlist',
+        description: 'should not see this on the djbooth page for sam.',
+        user: 'pam',
+    },
 ];
 
 const seedPlaylist = () => Playlist.bulkCreate(playlistData);

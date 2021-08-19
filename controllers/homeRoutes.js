@@ -17,29 +17,62 @@ router.get('/', async (req, res) => {
       logged_in: req.session.logged_in,
     });
 
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// This will render all playlists created by the currently logged in user to their djbooth page. User must be logged in to view this page.
+// Replace " '/djbooth, withAuth, " once login functionality implemented - removed for testing purposes only.
+router.get('/djbooth', async (req, res) => {  
+
+  try {
+    const playlistData = await Playlist.findAll({
+      where: { user: 'sam'},        // 'sam' for testing purposes only. replace with 'req.session.user' 
+      include: [{ model: Song }],
+    });
+
+    const playlists = playlistData.map((playlist) => playlist.get({ plain: true }));
+
+    res.render('djbooth', {
+      playlists,
+      logged_in: req.session.logged_in,
+    });
 
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/djbooth', async (req, res) => {
+// This will render the songs associated with an individual playlist to the viewplaylist page. User must be logged in to view their playlist.
+// Replace " '/viewplaylist, withAuth, " once login functionality implemented - removed for testing purposes only.
+router.get('/viewplaylist/:id', async (req, res) => {
 
   try {
+    // Get playlist data
+    const playlistData = await Playlist.findByPk( req.params.id, {
+      where: { user: 'sam' },
+    });
 
-    res.render('djbooth')
+    if (!playlistData) {
+      res.status(404).json({ message: 'No playlist found with that id!' });
+      return;
+    }
 
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+    const playlist = playlistData.get({ plain: true });
 
-// Need to update to account for playlist id
-router.get('/viewplaylist', async (req, res) => {
+    // Get song data
+    const songData = await Song.findAll({
+      where: {playlist_id: playlist.id},
+    });
 
-  try {
+    const songs = songData.map((song) => song.get({ plain: true }));
 
-    res.render('viewplaylist')
+    res.render('viewplaylist', {
+      playlist,
+      songs,
+      logged_in: req.session.logged_in
+    });
 
   } catch (err) {
     res.status(500).json(err);

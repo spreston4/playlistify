@@ -2,44 +2,20 @@
 <div class="columns is-centered mt-5">
     <article class="panel is-success column is-three-fifths">
         <p class="panel-heading">
-            Playlist Name
-            <!-- {{playlist.name}} -->
+            {{playlist.name}}
         </p>
         <p class="panel-tabs pt-3 pb-3">
-            Playlist description.
-            <!-- {{playlist.description}} -->
+            {{playlist.description}}
         </p>
 
         <!-- Loop through songs -->
-        {{!-- {{#each songs as |song|}}  --}}
+        {{#each songs as |song|}}
         <div class="panel-block is-active flex-row-between">
-            <div class="">
-                <p>Song 1</p>
-            </div>
-            <!-- <div class=""><p>{{song.name}}</p></div> -->
+            <div class=""><p>{{song.name}} by {{song.artist}}</p></div>
             <div class=""><button class="button is-dark" data-song_id="{{song.id}}" id="delete-song-button">Delete
                     Song</button></div>
         </div>
-        {{!-- {{/each}}  --}}
-
-        <div class="panel-block is-active flex-row-between">
-            <div class="">
-                <p>Song 2</p>
-            </div>
-            <div class=""><button class="button is-dark">Delete Song</button></div>
-        </div>
-        <div class="panel-block is-active flex-row-between">
-            <div class="">
-                <p>Song 3</p>
-            </div>
-            <div class=""><button class="button is-dark">Delete Song</button></div>
-        </div>
-        <div class="panel-block is-active flex-row-between">
-            <div class="">
-                <p>Song 4</p>
-            </div>
-            <div class=""><button class="button is-dark">Delete Song</button></div>
-        </div>
+        {{/each}}
 
         <div class="control mt-3 mb-0 is-centered columns is-centered">
             <a class="button is-dark" data-playlist_id="{{playlist.id}}" href="/searchsong">Add New Song</a>
