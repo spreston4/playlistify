@@ -5,7 +5,6 @@ const spotifyApiFactory = require('../config/spotifyWrapper');
 
 
 router.get('/', async (req, res) => {
-<<<<<<< HEAD
   try {
     // const playlistData = await Playlist.findAll({
     //   include: [{ model: User, attributes: ['username'] }]
@@ -24,45 +23,6 @@ router.get('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
-=======
-  // const code = req.query.code;
-  // const spotifyApi = spotifyApiFactory();
-  // try {
-  //   spotifyApi.authorizationCodeGrant(code).then(
-  //     function(data) {
-  //       console.log('The token expires in ' + data.body['expires_in']);
-  //       console.log('The access token is ' + data.body['access_token']);
-  //       console.log('The refresh token is ' + data.body['refresh_token']);
-    
-  //       // Set the access token on the API object to use it in later calls
-  //       spotifyApi.setAccessToken(data.body['access_token']);
-  //       spotifyApi.setRefreshToken(data.body['refresh_token']);
-  //       console.log(data.body);
-  //       req.session.save(() => {
-  //         req.session.spotifyApi = spotifyApi;
-  //         req.session.logged_in = true;
-          
-  //         res.redirect('http://localhost:3001/');
-  //       });
-  //     },
-  //     function(err) {
-  //       console.log('Something went wrong!', err);
-  //     }
-  //   );
-
-
-  // } catch (err) {
-  //   res.status(400).json(err);
-  // }
-  res.render('homepage');
-          });
-
-
-      
-      
-
-/*
->>>>>>> main
 
 router.get('/djbooth', async (req, res) => {
 
@@ -74,7 +34,6 @@ router.get('/djbooth', async (req, res) => {
     res.status(500).json(err);
   }
 });
-<<<<<<< HEAD
 
 // Need to update to account for playlist id
 router.get('/viewplaylist', async (req, res) => {
@@ -86,12 +45,6 @@ router.get('/viewplaylist', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-=======
-*/
-// Use withAuth middleware to prevent access to route
-router.get('/profile', withAuth, async (req, res) => {
-  res.render('profile');
->>>>>>> main
 });
 
 router.get('/searchsong', async (req, res) => {
