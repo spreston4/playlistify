@@ -78,6 +78,17 @@ router.get('/newplaylist', async (req, res) => {
   }
 });
 
+router.get('/viewplaylistpublic', async (req, res) => {
+
+  try {
+
+    res.render('viewplaylistpublic')
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 
 // Use withAuth middleware to prevent access to route
