@@ -1,23 +1,22 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { Playlist, Song } = require('../models');
 const withAuth = require('../utils/auth');
 const spotifyApiFactory = require('../config/spotifyWrapper');
 
-
+// This will render all playlists in the database to the homepage, whether the user is signed in or not.
 router.get('/', async (req, res) => {
   try {
-    // const playlistData = await Playlist.findAll({
-    //   include: [{ model: User, attributes: ['username'] }]
-    // });
+    const playlistData = await Playlist.findAll({
+      include: [{ model: Song }]
+    });
 
-    // const playlists = playlistData.map((playlist) => playlist.get({ plain: true }));
+    const playlists = playlistData.map((playlist) => playlist.get({ plain: true }));
 
-    // res.render('homepage', {
-    //   playlists,
-    //   logged_in: req.session.logged_in,
-    // });
+    res.render('homepage', {
+      playlists,
+      logged_in: req.session.logged_in,
+    });
 
-    res.render('homepage');
 
   } catch (err) {
     res.status(500).json(err);
