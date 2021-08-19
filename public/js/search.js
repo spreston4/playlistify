@@ -1,5 +1,6 @@
 // const searchvalue = document.getElementById('love').textContent;
-const searchValue = document.querySelector('#song-search-input');
+const searchValue = document.getElementById('song-search-input').value;
+
 const translatedValue = JSON.stringify({search:"TestValue from search.js fetch request"});
 
 
@@ -8,8 +9,7 @@ const translatedValue = JSON.stringify({search:"TestValue from search.js fetch r
 
 const searching = async (event) => {
   event.preventDefault();
-    const searchValueInput = searchValue.val();
-    const response = await fetch(`/api/spotify/searchsong?q=${searchValueInput}`, {
+    const response = await fetch(`/api/spotify/searchsong?q=${searchValue}`, {
       method: 'GET',
       // body: translatedValue,
       headers: { 'Content-Type': 'application/json' },
@@ -22,4 +22,4 @@ const searching = async (event) => {
     }
   };
   
-  document.querySelector('#song-search').addEventListener('click', searching());
+  document.querySelector('#song-search').addEventListener('click', searching);
