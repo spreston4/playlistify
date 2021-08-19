@@ -1,13 +1,15 @@
 // const searchvalue = document.getElementById('love').textContent;
-const searchValue = 'rock';
+const searchValue = document.querySelector('#song-search-input');
 const translatedValue = JSON.stringify({search:"TestValue from search.js fetch request"});
+const test = "love"
 
 
 
 
 const searching = async (event) => {
   event.preventDefault();
-    const response = await fetch(`/api/spotify/search/tracks?q=${searchValue}`, {
+  // const searchValueInput = searchValue.val();
+    const response = await fetch(`/api/spotify/search/tracks?q=${test}`, {
       method: 'GET',
       // body: translatedValue,
       headers: { 'Content-Type': 'application/json' },
@@ -20,4 +22,4 @@ const searching = async (event) => {
     }
   };
   
-  document.querySelector('#Searching').addEventListener('click', searching());
+  document.querySelector('#song-search').addEventListener('click', searching());

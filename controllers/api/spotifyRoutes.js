@@ -16,5 +16,21 @@ spotifyApi.searchTracks(req.query.q)
   }, function(err) {
     // console.error(err);
   });
+});
+
+router.get('/get/audiofeatures', async (req,res) =>{
+  const spotifyApi = spotifyApiFactory(req.session.access_token, req.session.refresh_token); 
+  spotifyApi.getAudioFeaturesForTrack(req.query.q)
+  .then(function(data){
+    console.log(data)
+  }
+  )
 })
+
+
+
+
+
+
+
 module.exports = router;

@@ -1,4 +1,5 @@
 <!-- Search Song -->
+<html>
 <div class="columns is-centered mt-5">
     <article class="panel is-success column is-three-fifths">
         <p class="panel-heading">
@@ -25,19 +26,21 @@
 <div class="columns is-centered mt-5">
     <article class="panel is-success column is-three-fifths">
         <p class="panel-heading">
-            Search Tracks by Album
+            Search Tracks 
         </p>
         <form class="mt-4">
 
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="e.g Alex Smith">
+                    <input class="input" id="song-search-input" type="text" placeholder="e.g Alex Smith">
                 </div>
             </div>
 
             <div class="control">
-                <a class="button is-dark" data-playlist_id="{{playlist.id}}" href="/songresults"
-                    id="song-search-album">Search</a>
+                <button class="button is-dark" id="song-search"
+                 {{!-- data-playlist_id="{{playlist.id}}" --}}
+                 type="button" value="song-search" onclick="searching(event)"
+                    >Search</button>
                 <!-- <a class="button is-dark" data-playlist_id="{{playlist.id}}" href="/songresults/{{playlist.id}}" id="song-search-album">Search</a> -->
             </div>
 
@@ -67,3 +70,5 @@
         </form>
     </article>
 </div>
+<script src="/js/search.js"></script>
+</html>
