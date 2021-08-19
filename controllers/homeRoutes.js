@@ -89,50 +89,34 @@ router.get('/viewplaylistpublic', async (req, res) => {
   }
 });
 
+router.get('/profile', withAuth, async (req, res) => {
+  res.render('profile');
+});
 
+router.get('/login', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
 
-// Use withAuth middleware to prevent access to route
-// router.get('/profile', withAuth, async (req, res) => {
-//   try {
-//     // Find the logged in user based on the session ID
-//     const userData = await User.findByPk(req.session.user_id, {
-//       attributes: { exclude: ['password'] },
-//       include: [{ model: Project }],
-//     });
+  var scopes = ['user-read-private', 'user-read-email'],
+  redirectUri = 'http://localhost:3001/api/users/login',
+  clientId = 'f61cd24f13634874a2c1dfc3411dd2a5';
+  //state = 'some-state-of-my-choice';
 
-//     const user = userData.get({ plain: true });
+// Setting credentials can be done in the wrapper's constructor, or using the API object's setters.
+/*var spotifyApi = new SpotifyWebApi({
+  redirectUri: redirectUri,
+  clientId: clientId
+});
+*/
+// Create the authorization URL
+const authorizeURL = spotifyApiFactory().createAuthorizeURL(scopes);
 
-//     res.render('profile', {
-//       ...user,
-//       logged_in: true
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-// router.get('/login', (req, res) => {
-//   // If the user is already logged in, redirect the request to another route
-//   if (req.session.logged_in) {
-//     res.redirect('/profile');
-//     return;
-//   }
-
-//   res.render('login');
-// });
-
-// Render route for searchtracks page
-// router.get('/searchtracks', withAuth, (req, res) => {
-
-//   try {
-//     res.render('searchtracks', {
-//       logged_in: req.session.logged_in,
-//       user_id: req.session.user_id
-//     });
-
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+// https://accounts.spotify.com:443/authorize?client_id=5fe01282e44241328a84e7c5cc169165&response_type=code&redirect_uri=https://example.com/callback&scope=user-read-private%20user-read-email&state=some-state-of-my-choice
+console.log(authorizeURL);
+res.redirect(authorizeURL);
+});
 
 module.exports = router;
