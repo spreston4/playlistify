@@ -23,7 +23,7 @@ router.get('/login', async (req, res) => {
   console.log(code);
   try {
     spotifyApi.authorizationCodeGrant(code).then(
-     ay function(data) {
+     await function(data) {
         console.log('The token expires in ' + data.body['expires_in']);
         console.log('The access token is ' + data.body['access_token']);
         console.log('The refresh token is ' + data.body['refresh_token']);

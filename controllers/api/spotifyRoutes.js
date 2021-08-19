@@ -3,7 +3,7 @@ const spotifyApiFactory = require('../../config/spotifyWrapper');
 const SongName = "Love"
 // const SongName = `${Love}`
 
-router.get('/search/tracks', async (req,res) => { 
+router.get('/searchsong', async (req,res) => { 
 console.log(req.query);
 const spotifyApi = spotifyApiFactory(req.session.access_token, req.session.refresh_token);  
 spotifyApi.searchTracks(req.query.q)
