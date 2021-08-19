@@ -1703,3 +1703,18 @@ form [type='radio'] {
     align-content: center;
   }
 }
+
+
+.navigation-bar {
+  background-color:lawngreen;
+  opacity: 70%;
+  display:flex;
+  flex-direction: row;
+  width:100%;
+}
+
+.navigation-bar li  {
+  margin-left:10%;
+  background-color:white;
+  list-style:none;
+}

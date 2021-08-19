@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fund My Project!</title>
+  <title>Playlistify</title>
   <link rel="stylesheet" href="/css/jass.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -13,19 +13,27 @@
   <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
       <h1>
-        <span role="img" aria-label="money">💸</span>
-        <a href="/">Fund My Project!</a>
+        <a href="/">Playlistify</a>
       </h1>
-      <nav>
-        <!-- Conditionally render login or logout links -->
-        {{#if logged_in}}
-        <a href="/profile">profile</a> |
-        <button class="no-button" id="logout">logout</button>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}}
-      </nav>
     </header>
+
+    <nav>
+        <ul class = "navigation-bar"> 
+          <li><a href="/"> Home </a></li>
+          <li><button id="Searching" type="button" value="Searching" onclick="searching(event)"> Search Tracks</button></li>
+           {{#if logged_in}}
+              
+           <li><a href="/profile" id="logout">logout</a></li>
+           {{else}}
+          <li><a href="/login" id="login"> Login </a></li>
+        {{/if}}
+          <li><a href="/login"> Login </a></li>
+        </ul>
+        <!-- Conditionally render login or logout links -->
+       
+       
+      </nav>
+
     <main class="container container-fluid mt-5">
       <!-- Render the sub layout -->
       {{{ body }}}
@@ -39,6 +47,7 @@
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
+  <script src="/js/search.js"></script>
 </body>
 
 </html>
