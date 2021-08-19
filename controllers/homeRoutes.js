@@ -47,78 +47,83 @@ router.get('/viewplaylist', async (req, res) => {
   }
 });
 
-router.get('/searchsong', async (req, res) => {
+  // Use withAuth middleware to prevent access to route
+  router.get('/profile', withAuth, async (req, res) => {
+    res.render('profile');
+  });
 
-  try {
+  router.get('/searchsong', async (req, res) => {
 
-    res.render('searchsong')
+    try {
 
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+      res.render('searchsong')
 
-router.get('/songresults', async (req, res) => {
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
-  try {
+  router.get('/songresults', async (req, res) => {
 
-    res.render('songresults')
+    try {
 
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+      res.render('songresults')
 
-router.get('/newplaylist', async (req, res) => {
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
-  try {
+  router.get('/newplaylist', async (req, res) => {
 
-    res.render('newplaylist')
+    try {
 
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+      res.render('newplaylist')
 
-router.get('/viewplaylistpublic', async (req, res) => {
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
-  try {
+  router.get('/viewplaylistpublic', async (req, res) => {
 
-    res.render('viewplaylistpublic')
+    try {
 
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+      res.render('viewplaylistpublic')
 
-router.get('/profile', withAuth, async (req, res) => {
-  res.render('profile');
-});
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
-router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
-  if (req.session.logged_in) {
-    res.redirect('/');
-    return;
-  }
+  router.get('/profile', withAuth, async (req, res) => {
+    res.render('profile');
+  });
 
-  var scopes = ['user-read-private', 'user-read-email'],
-  redirectUri = 'http://localhost:3001/api/users/login',
-  clientId = 'f61cd24f13634874a2c1dfc3411dd2a5';
-  //state = 'some-state-of-my-choice';
+  router.get('/login', (req, res) => {
+    // If the user is already logged in, redirect the request to another route
+    if (req.session.logged_in) {
+      res.redirect('/');
+      return;
+    }
 
-// Setting credentials can be done in the wrapper's constructor, or using the API object's setters.
-/*var spotifyApi = new SpotifyWebApi({
-  redirectUri: redirectUri,
-  clientId: clientId
-});
-*/
-// Create the authorization URL
-const authorizeURL = spotifyApiFactory().createAuthorizeURL(scopes);
+    var scopes = ['user-read-private', 'user-read-email'],
+      redirectUri = 'http://localhost:3001/api/users/login',
+      clientId = 'f61cd24f13634874a2c1dfc3411dd2a5';
+    //state = 'some-state-of-my-choice';
 
-// https://accounts.spotify.com:443/authorize?client_id=5fe01282e44241328a84e7c5cc169165&response_type=code&redirect_uri=https://example.com/callback&scope=user-read-private%20user-read-email&state=some-state-of-my-choice
-console.log(authorizeURL);
-res.redirect(authorizeURL);
-});
+    // Setting credentials can be done in the wrapper's constructor, or using the API object's setters.
+    /*var spotifyApi = new SpotifyWebApi({
+      redirectUri: redirectUri,
+      clientId: clientId
+    });
+    */
+    // Create the authorization URL
+    const authorizeURL = spotifyApiFactory().createAuthorizeURL(scopes);
 
-module.exports = router;
+    // https://accounts.spotify.com:443/authorize?client_id=5fe01282e44241328a84e7c5cc169165&response_type=code&redirect_uri=https://example.com/callback&scope=user-read-private%20user-read-email&state=some-state-of-my-choice
+    console.log(authorizeURL);
+    res.redirect(authorizeURL);
+  });
+
+  module.exports = router;
