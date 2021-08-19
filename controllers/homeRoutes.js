@@ -45,6 +45,17 @@ router.get('/viewplaylist', async (req, res) => {
   }
 });
 
+router.get('/searchsong', async (req, res) => {
+
+  try {
+
+    res.render('searchsong')
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 
 // Use withAuth middleware to prevent access to route
