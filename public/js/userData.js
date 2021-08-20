@@ -1,9 +1,7 @@
-const searchValue = '3Qm86XLflmIXVm1wcwkgDK';
 
-
-const autdioFeatures = async (event) => {
+const getPlaylist = async (event) => {
     event.preventDefault();
-      const response = await fetch(`/api/spotify/getaudiofeatures?q=${searchValue}`, {
+      const response = await fetch(`/api/spotify/userplaylist`, {
         method: 'GET',
         // body: translatedValue,
         headers: { 'Content-Type': 'application/json' },
@@ -14,4 +12,4 @@ const autdioFeatures = async (event) => {
       } else {
         alert(response.statusText);
       }
-    };
+};

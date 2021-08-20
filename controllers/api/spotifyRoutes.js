@@ -18,14 +18,22 @@ spotifyApi.searchTracks(req.query.q)
   });
 });
 
-router.get('/get/audiofeatures', async (req,res) =>{
+router.get('/audiofeatures', async (req,res) =>{
   const spotifyApi = spotifyApiFactory(req.session.access_token, req.session.refresh_token); 
   spotifyApi.getAudioFeaturesForTrack(req.query.q)
   .then(function(data){
-    console.log(data)
+    console.log(data.danceability);
   }
   )
-})
+});
+
+router.get('/userplaylists', async (req,res)=>{
+  const spotifyApi = spotifyApiFactory(req.session.spotify_user);
+  spotifyApi.getUserPlaylists(req.query.q)
+  .then(function(data){
+    console.log(data)
+  })
+});
 
 
 
