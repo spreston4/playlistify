@@ -122,11 +122,15 @@ router.get('/songresults/:id', async (req, res) => {
   }
 });
 
+// This will render the newplaylist page inorder to allow the user to create a new playlist that will be associated with the logged in user. user must be logged in to view.
+// Replace " '/newplaylist, withAuth, " once login functionality implemented - removed for testing purposes only.
 router.get('/newplaylist', async (req, res) => {
 
   try {
-
-    res.render('newplaylist')
+    res.render('newplaylist', {
+      user: 'sam',        // 'sam' for testing purposes only. replace with 'req.session.user' 
+      logged_in: req.session.logged_in,
+    })
 
   } catch (err) {
     res.status(500).json(err);
