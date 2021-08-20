@@ -59,7 +59,7 @@ router.get('/viewplaylist/:id', async (req, res) => {
     });
 
     const playlist = playlistData.get({ plain: true });
-
+   
     // Ensure playlist exists
     if (!playlistData) {
       res.status(404).json({ message: 'No playlist found with that id!' });
@@ -72,6 +72,10 @@ router.get('/viewplaylist/:id', async (req, res) => {
     });
 
     const songs = songData.map((song) => song.get({ plain: true }));
+
+    // Jason Ma - Lets see what data songs and playslist give"
+    console.log(playlist);
+    console.log(songs);
 
     res.render('viewplaylist', {
       playlist,
@@ -201,6 +205,18 @@ router.get('/login', (req, res) => {
 });
 
 
+
+// Jason Code 
+
+router.get('/viewplaylist', (req,res) => {
+  if(req.session.logged_in) {
+    res.redirect('/djbooth')
+  } else {
+    res.render('djbooth', {
+      logged_in:false
+    })
+  }
+})
 
 
 router.get('/logout', (req, res) => {
