@@ -9,6 +9,7 @@ router.post('/', async (req, res) => {
         const playlistData = Playlist.create({
             name: req.body.name,
             description: req.body.description,
+            user: 'sam',             // 'sam' for testing purposes only. replace with 'req.session.user' 
         });
 
         res.status(200).json(playlistData);
@@ -44,3 +45,5 @@ router.delete('/:id', async (req, res) => {
 // TODO: Create 'PUT' route that will allow us to edit a playlist by adding a song.
 
 // TODO: Create a 'PUT' route that will allow us to edit a playlist by changing it's name or description.
+
+module.exports = router;
