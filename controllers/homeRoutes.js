@@ -34,11 +34,15 @@ router.get('/djbooth', async (req, res) => {
 
     const playlists = playlistData.map((playlist) => playlist.get({ plain: true }));
 
+
+   
+    
     res.render('djbooth', {
       playlists,
       logged_in: req.session.logged_in,
     });
 
+  
   } catch (err) {
     res.status(500).json(err);
   }
@@ -195,5 +199,15 @@ router.get('/login', (req, res) => {
   console.log(authorizeURL);
   res.redirect(authorizeURL);
 });
+
+
+
+
+router.get('/logout', (req, res) => {
+  res.render('homepage' ,{
+    logged_in:false
+  })
+})
+
 
 module.exports = router;
