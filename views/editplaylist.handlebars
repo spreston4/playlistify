@@ -1,0 +1,33 @@
+<!-- New Playlist -->
+<div class="columns is-centered mt-5">
+            <article class="panel is-success column is-three-fifths">
+                <p class="panel-heading">
+                    Edit Playlist
+                </p>
+                <form id="edit-playlist-form">
+                    <div class="field mt-5">
+                        <label class="label">Playlist Name</label>
+                        <p class="control has-icons-left has-icons-right">
+                            <input class="input" type="text" value="{{playlist.name}}" id="edit-playlist-name">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-music"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="field">
+                        <label class="label">Playlist Description</label>
+                        <div class="control">
+                            <textarea class="textarea" id="edit-playlist-description">{{playlist.description}}</textarea>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control mt-3 mb-0 is-centered columns is-centered">
+                            <button class="button is-dark" type="submit" id="edit-playlist-button">Update Playlist</button>
+                        </div>
+                        </p>
+                    </div>
+                </form>
+            </article>
+        </div>
+
+        <script src="/js/editPlaylist.js"></script>
