@@ -137,11 +137,32 @@ router.get('/newplaylist', async (req, res) => {
   }
 });
 
-router.get('/viewplaylistpublic', async (req, res) => {
+router.get('/viewplaylistpublic/:id', async (req, res) => {
 
   try {
+    // Get playlist data
+    const playlistData = await Playlist.findByPk(req.params.id);
 
-    res.render('viewplaylistpublic')
+    const playlist = playlistData.get({ plain: true });
+
+    // Ensure playlist exists
+    if (!playlistData) {
+      res.status(404).json({ message: 'No playlist found with that id!' });
+      return;
+    }
+
+    // Get song data
+    const songData = await Song.findAll({
+      where: { playlist_id: playlist.id },
+    });
+
+    const songs = songData.map((song) => song.get({ plain: true }));
+
+    res.render('viewplaylistpublic', {
+      playlist,
+      songs,
+      logged_in: req.session.logged_in,
+    });
 
   } catch (err) {
     res.status(500).json(err);
