@@ -11,15 +11,17 @@
         <!-- Loop through songs -->
         {{#each songs as |song|}}
         <div class="panel-block is-active flex-row-between">
-            <div class=""><p>{{song.name}} by {{song.artist}}</p></div>
+            <div class="">
+                <p>{{song.name}} by {{song.artist}}</p>
+            </div>
             <div class=""><button class="button is-dark" data-song_id="{{song.id}}" id="delete-song-button">Delete
                     Song</button></div>
         </div>
         {{/each}}
 
         <div class="control mt-3 mb-0 is-centered columns is-centered">
-            <a class="button is-dark" data-playlist_id="{{playlist.id}}" href="/searchsong">Add New Song</a>
-            <!-- <a class="button is-dark" data-playlist_id="{{playlist.id}}" href="/searchsong/{{playlist.id}}">Add New Song</a> -->
+            <a class="button is-dark" data-playlist_id="{{playlist.id}}" href="/searchsong/{{playlist.id}}">Add New
+                Song</a>
         </div>
     </article>
 </div>
