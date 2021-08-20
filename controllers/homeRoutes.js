@@ -101,11 +101,21 @@ router.get('/searchsong/:id', async (req, res) => {
   }
 });
 
-router.get('/songresults', async (req, res) => {
+// This will render the searchresults page. We are passing the playlist id in order to keep track of which playlist we will add the song to. User must be logged in to view this page.
+// Replace " '/songresults/:id, withAuth, " once login functionality implemented - removed for testing purposes only.
+router.get('/songresults/:id', async (req, res) => {
 
   try {
+    const playlistData = await Playlist.findByPk(req.params.id, {
+      where: { user: 'sam' },        // 'sam' for testing purposes only. replace with 'req.session.user' 
+    });
 
-    res.render('songresults')
+    const playlist = playlistData.get({ plain: true });
+
+    res.render('songresults', {
+      playlist,
+      logged_in: req.session.logged_in,
+    });
 
   } catch (err) {
     res.status(500).json(err);
