@@ -19,25 +19,12 @@ const searching = async (event) => {
       // document.location.replace('/');
       // put in for loop
       // document.create element, put in song title and artist (maybe) album, if we can put in an add playlist button
+   
     } else {
       alert(response.statusText);
     }
   };
 
-  const getPlaylist = async (event) => {
-    event.preventDefault();
-      const response = await fetch(`/api/spotify/userplaylists?q=rsimer`, {
-        method: 'GET',
-        // body: translatedValue,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    
-      if (response.ok) {
-        document.location.replace('/');
-        
-      } else {
-        alert(response.statusText);
-      }
-};
+ 
   
-  document.querySelector('#song-search').addEventListener('click', getPlaylist);
+  document.querySelector('#song-search').addEventListener('click', searching);
