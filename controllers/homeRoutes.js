@@ -124,6 +124,11 @@ router.get('/songresults/:id', async (req, res) => {
 
     const playlist = playlistData.get({ plain: true });
 
+ 
+        // put an {{each}} into the search template and a res.render so that we can see each individual item
+        
+        //console.log('Search by "Love"', data.body.tracks.items);
+        
     res.render('songresults', {
       playlist,
       logged_in: req.session.logged_in,

@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { Playlist, User } = require('../../models');
 const  spotifyApiFactory =  require('../../config/spotifyWrapper');
+
 
 router.post('/', async (req, res) => {
   try {

@@ -1,11 +1,13 @@
 const router = require('express').Router();
 const spotifyApiFactory = require('../../config/spotifyWrapper');
-let keyword = "Lady Gaga"
+const { Playlist, Song } = require('../../models');
+
+let keyword = "Love"
 let artist = "Kendrick Lamar"
 
 // const SongName = `${Love}`
 
-router.get('/search/tracks', async (req,res) => { 
+router.get('/search/tracks/:id', async (req,res) => { 
 console.log("SpotifyRoutes.js was called)");
 console.log(req.query);
 const spotifyApi = spotifyApiFactory(req.session.access_token, req.session.refresh_token);  
@@ -34,6 +36,12 @@ spotifyApi.searchTracks(`track:${keyword}`)
       for (let i = 0; i < fullTrack.length; i++) {
       console.log(data.body.tracks.items[i].album.name);
       }
+
+      const playlistData = await Playlist.findByPk(req.params.id, {
+        where: { user: 'sam' },        // 'sam' for testing purposes only. replace with 'req.session.user' 
+      });
+  
+      const playlist = playlistData.get({ plain: true });
     // put an {{each}} into the search template and a res.render so that we can see each individual item
     
     //console.log('Search by "Love"', data.body.tracks.items);
@@ -43,11 +51,12 @@ spotifyApi.searchTracks(`track:${keyword}`)
 
     console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     res.render('songresults', {
+      playlist,
       output1:data.body.tracks.items[0].album.name,
       output2:data.body.tracks.items[1].album.name,
       output3:data.body.tracks.items[2].album.name,
-      output4:data.body.tracks.items[4].album.name,
-      output5:data.body.tracks.items[5].album.name,
+      output4:data.body.tracks.items[3].album.name,
+      output5:data.body.tracks.items[4].album.name,
       logged_in: req.session.logged_in,
     });
   }, function(err) {
