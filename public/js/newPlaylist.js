@@ -1,5 +1,6 @@
 // Create a new playlist from the newplaylist page
 const newPlaylistHandler = async(event) => {
+    console.log("newPlaylistHandler.js has been triggered");
 
     event.preventDefault();
 

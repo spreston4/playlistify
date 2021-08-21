@@ -29,12 +29,16 @@
 
             <div class="field">
                 <div class="control">
-                    <input class="input" type="text" placeholder="e.g Alex Smith">
+                    <input class="input" id="song-input" type="text" placeholder="e.g Alex Smith">
                 </div>
             </div>
-
+<!--
             <div class="control">
                 <a class="button is-dark" data-playlist_id="{{playlist.id}}" href="/songresults/{{playlist.id}}" id="song-search-album">Search</a>
+            </div>
+-->
+            <div class="control">
+                <a class="button is-dark" data-playlist_id="{{playlist.id}}" href="/api/spotify/search/tracks" id="song-search-album" >Testing</a>
             </div>
 
         </form>
@@ -61,3 +65,5 @@
         </form>
     </article>
 </div>
+
+<script src="/js/search.js"></script>
