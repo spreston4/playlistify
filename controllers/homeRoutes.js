@@ -5,12 +5,16 @@ const spotifyApiFactory = require('../config/spotifyWrapper');
 
 // This will render all playlists in the database to the homepage, whether the user is logged in or not.
 router.get('/', async (req, res) => {
+
   try {
     const playlistData = await Playlist.findAll({
       include: [{ model: Song }]
     });
 
     const playlists = playlistData.map((playlist) => playlist.get({ plain: true }));
+
+
+
 
     res.render('homepage', {
       playlists,
@@ -220,8 +224,13 @@ router.get('/viewplaylist', (req,res) => {
 
 
 router.get('/logout', (req, res) => {
-  res.render('homepage' ,{
-    logged_in:false
+  
+  req.session.destroy(() => {
+    res.status(204).end();
+  });
+
+  res.render('homepage', {
+    logged_in: false
   })
 })
 
