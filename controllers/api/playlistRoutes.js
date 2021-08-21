@@ -38,12 +38,36 @@ router.delete('/:id', async (req, res) => {
         res.status(200).json(playlistData);
 
     } catch (err) {
-        res.status(400).json(err);
+        res.status(500).json(err);
     }
 });
 
-// TODO: Create 'PUT' route that will allow us to edit a playlist by adding a song.
+// Edit a playlist name and description. Called from 'editPlaylist.js' which is called by clicking the 'Update Playlist Button' on the editplaylist page.
+router.put('/:id', async (req, res) => {
 
-// TODO: Create a 'PUT' route that will allow us to edit a playlist by changing it's name or description.
+    try {
+        const playlistData = await Playlist.update(
+            {
+                name: req.body.name,
+                description: req.body.description,
+            },
+            {
+                where: {
+                    id: req.params.id,
+                },
+            }
+        );
+
+        if (!playlistData) {
+            res.status(404).json({ message: 'No playlist found with that id!' });
+            return;
+        }
+
+        res.status(200).json(playlistData);
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 module.exports = router;

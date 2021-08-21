@@ -137,6 +137,7 @@ router.get('/newplaylist', async (req, res) => {
   }
 });
 
+// This will render a view of the selected playlist without the option to edit it. User can view the playlist whether they are signed in or not.
 router.get('/viewplaylistpublic/:id', async (req, res) => {
 
   try {
@@ -161,6 +162,24 @@ router.get('/viewplaylistpublic/:id', async (req, res) => {
     res.render('viewplaylistpublic', {
       playlist,
       songs,
+      logged_in: req.session.logged_in,
+    });
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// This will render the editplaylist page for the selected playlist. User will be able to edit the name and description of their playlist. User must me logged in to view this page.
+// Replace " '/editplaylist/:id, withAuth, " once login functionality implemented - removed for testing purposes only.
+router.get('/editplaylist/:id', async (req, res) => {
+
+  try {
+    const playlistData = await Playlist.findByPk(req.params.id);
+    const playlist = playlistData.get({ plain: true });
+
+    res.render('editplaylist', {
+      playlist,
       logged_in: req.session.logged_in,
     });
 

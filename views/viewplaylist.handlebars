@@ -24,6 +24,10 @@
                 <a class="button is-dark mx-auto" data-playlist_id="{{playlist.id}}"
                     href="/searchsong/{{playlist.id}}">Add New
                     Song</a>
+
+                <a class="button is-dark mx-auto" data-playlist_id="{{playlist.id}}"
+                    href="/editplaylist/{{playlist.id}}">Edit Playlist</a>
+
                 <button class="button is-dark mx-auto" data-playlist_id="{{playlist.id}}" type='submit'
                     id="delete-playlist-button">Delete Playlist</button>
             </div>
@@ -32,3 +36,4 @@
 </div>
 
 <script src="/js/deletePlaylist.js"></script>
+<script src="/js/editPlaylist.js"></script>
