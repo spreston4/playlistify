@@ -61,7 +61,6 @@ spotifyApi.searchTracks(`track:${keyword}`)
     console.log("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     
     res.render('songresults', {
-      //playlist,
       output1:data.body.tracks.items[0].album.name,
       output2:data.body.tracks.items[1].album.name,
       output3:data.body.tracks.items[2].album.name,

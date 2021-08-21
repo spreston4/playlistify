@@ -17,7 +17,7 @@ async function searching(event) {
     });
   
     if (response.ok) {
-      document.location.replace('/');
+      document.location.replace(`/api/spotify/search/tracks?q=${searchvalue}`);
     } else {
       alert(response.statusText);
     }
