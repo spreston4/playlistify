@@ -2,10 +2,15 @@ const router = require('express').Router();
 const spotifyApiFactory = require('../../config/spotifyWrapper');
 const { Playlist, Song } = require('../../models');
 
-let keyword = "Love"
+let keyword;
 let artist = "Kendrick Lamar"
 
 // const SongName = `${Love}`
+
+router.post('/search/tracks/keyword' , async (req,res) => {
+  console.log("We are retrieving the body from search.js");
+  keyword = req.body.searchvalue;
+})
 
 router.get('/search/tracks/:id', async (req,res) => { 
 console.log("SpotifyRoutes.js was called)");
