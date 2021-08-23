@@ -28,11 +28,11 @@ router.get('/', async (req, res) => {
 
 // This will render all playlists created by the currently logged in user to their djbooth page. User must be logged in to view this page.
 // Replace " '/djbooth, withAuth, " once login functionality implemented - removed for testing purposes only.
-router.get('/djbooth', async (req, res) => {
+router.get('/djbooth', withAuth, async (req, res) => {
 
   try {
     const playlistData = await Playlist.findAll({
-      where: { user: 'sam' },        // 'sam' for testing purposes only. replace with 'req.session.user' 
+      where: { user: req.session.spotify_user },      
       include: [{ model: Song }],
     });
 
@@ -54,12 +54,12 @@ router.get('/djbooth', async (req, res) => {
 
 // This will render the songs associated with an individual playlist to the viewplaylist page. User must be logged in to view their playlist.
 // Replace " '/viewplaylist/:id, withAuth, " once login functionality implemented - removed for testing purposes only.
-router.get('/viewplaylist/:id', async (req, res) => {
+router.get('/viewplaylist/:id', withAuth, async (req, res) => {
 
   try {
     // Get playlist data
     const playlistData = await Playlist.findByPk(req.params.id, {
-      where: { user: 'sam' },        // 'sam' for testing purposes only. replace with 'req.session.user' 
+      where: { user: req.session.spotify_user },     
     });
 
     const playlist = playlistData.get({ plain: true });
@@ -94,7 +94,7 @@ router.get('/viewplaylist/:id', async (req, res) => {
 
 // This will render the searchsong page. We are passing the playlist id in order to keep track of which playlist the search is associated with - this should ulitmately allow us to add a song to the playlist from the songresults page. User must be logged in to view this page.
 // Replace " '/searchsong/:id, withAuth, " once login functionality implemented - removed for testing purposes only.
-router.get('/searchsong/:id', async (req, res) => {
+router.get('/searchsong/:id', withAuth, async (req, res) => {
 
   try {
     const playlistData = await Playlist.findByPk(req.params.id, {
@@ -115,11 +115,11 @@ router.get('/searchsong/:id', async (req, res) => {
 
 // This will render the searchresults page. We are passing the playlist id in order to keep track of which playlist we will add the song to. User must be logged in to view this page.
 // Replace " '/songresults/:id, withAuth, " once login functionality implemented - removed for testing purposes only.
-router.get('/songresults/:id', async (req, res) => {
+router.get('/songresults/:id', withAuth, async (req, res) => {
 
   try {
     const playlistData = await Playlist.findByPk(req.params.id, {
-      where: { user: 'sam' },        // 'sam' for testing purposes only. replace with 'req.session.user' 
+      where: { user: req.session.spotify_user },     
     });
 
     const playlist = playlistData.get({ plain: true });
@@ -141,11 +141,11 @@ router.get('/songresults/:id', async (req, res) => {
 
 // This will render the newplaylist page inorder to allow the user to create a new playlist that will be associated with the logged in user. user must be logged in to view.
 // Replace " '/newplaylist, withAuth, " once login functionality implemented - removed for testing purposes only.
-router.get('/newplaylist', async (req, res) => {
+router.get('/newplaylist', withAuth, async (req, res) => {
 
   try {
     res.render('newplaylist', {
-      user: 'sam',        // 'sam' for testing purposes only. replace with 'req.session.user' 
+      user: req.session.spotify_user,        
       logged_in: req.session.logged_in,
     })
 

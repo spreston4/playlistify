@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
         const playlistData = Playlist.create({
             name: req.body.name,
             description: req.body.description,
-            user: 'sam',             // 'sam' for testing purposes only. replace with 'req.session.user' 
+            user: req.session.spotify_user,             
         });
 
         res.status(200).json(playlistData);
@@ -25,7 +25,7 @@ router.delete('/:id', async (req, res) => {
     try {
         const playlistData = await Playlist.destroy({
             where: {
-                user: 'sam',             // 'sam' for testing purposes only. replace with 'req.session.user' 
+                user: req.session.spotify_user,             
                 id: req.params.id,
             },
         });
