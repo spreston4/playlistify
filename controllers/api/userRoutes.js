@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { Playlist, User } = require('../../models');
 const  spotifyApiFactory =  require('../../config/spotifyWrapper');
+
 
 router.post('/', async (req, res) => {
   try {
@@ -23,22 +24,31 @@ router.get('/login', async (req, res) => {
   console.log(code);
   try {
     spotifyApi.authorizationCodeGrant(code).then(
-      function(data) {
+      async function(data) {
         console.log('The token expires in ' + data.body['expires_in']);
         console.log('The access token is ' + data.body['access_token']);
         console.log('The refresh token is ' + data.body['refresh_token']);
     
         // Set the access token on the API object to use it in later calls
-        // spotifyApi.setAccessToken(data.body['access_token']);
-        // spotifyApi.setRefreshToken(data.body['refresh_token']);
+        spotifyApi.setAccessToken(data.body['access_token']);
+         spotifyApi.setRefreshToken(data.body['refresh_token']);
+
+         const user = await spotifyApi.getMe()
+         console.log(user);
+
+
+         
         console.log(data.body);
+        
         req.session.save(() => {
           req.session.access_token = data.body.access_token;
           req.session.refresh_token = data.body.refresh_token;
           req.session.logged_in = true;
+          req.session.spotify_user = user.body.id;
           res.redirect('http://localhost:3001/');
+         });
 
-        });
+         
       },
       function(err) {
         res.status(400).json(err);

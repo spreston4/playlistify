@@ -4,11 +4,11 @@
                 <p class="panel-heading">
                     Create New Playlist
                 </p>
-                <form id="">
+                <form id="new-playlist-form">
                     <div class="field mt-5">
                         <label class="label">Playlist Name</label>
                         <p class="control has-icons-left has-icons-right">
-                            <input class="input" type="text" placeholder="Name" id="">
+                            <input class="input" type="text" placeholder="Name" id="new-playlist-name">
                             <span class="icon is-small is-left">
                                 <i class="fas fa-music"></i>
                             </span>
@@ -17,15 +17,17 @@
                     <div class="field">
                         <label class="label">Playlist Description</label>
                         <div class="control">
-                            <textarea class="textarea" placeholder="Enter description here" id=""></textarea>
+                            <textarea class="textarea" placeholder="Enter description here" id="new-playlist-description"></textarea>
                         </div>
                     </div>
                     <div class="field">
                         <div class="control mt-3 mb-0 is-centered columns is-centered">
-                            <button class="button is-dark" id="new-playlist-button">Create Playlist</button>
+                            <button class="button is-dark" type="submit" id="new-playlist-button">Create Playlist</button>
                         </div>
                         </p>
                     </div>
                 </form>
             </article>
         </div>
+
+        <script src="/js/newPlaylist.js"></script>

@@ -1,11 +1,11 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Songs extends Model {}
+class Song extends Model {}
 
-Songs.init(
+Song.init(
   {
-    track_id: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -35,11 +35,11 @@ Songs.init(
     },
     danceability: {
       type: DataTypes.DECIMAL,
-      allowNull: false,
+      allowNull: true,
     },
     bpm: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {
@@ -47,8 +47,8 @@ Songs.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'songs',
+    modelName: 'song',
   }
 );
 
-module.exports = Songs;
+module.exports = Song;
